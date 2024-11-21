@@ -3,7 +3,7 @@ using Gestao.Models.TmdbMovieDetailed;
 using System.Collections.Specialized;
 using System.Web;
 
-namespace Gestao.Services;
+namespace Gestao.Infra;
 
 public static class TmdbInfra
 {
@@ -23,7 +23,7 @@ public static class TmdbInfra
     }
 
     private static HttpResponseMessage Request(string uri)
-    {    
+    {
         var client = new HttpClient();
         var request = new HttpRequestMessage
         {
@@ -66,7 +66,7 @@ public static class TmdbInfra
         query["primary_release_year"] = movieSearch.PrimaryReleaseYear;
 
         string uri = $"/search/movie?{query}";
-        return Request(uri).Content.ReadFromJsonAsync<TmdbMovieResult>().Result.Results; 
+        return Request(uri).Content.ReadFromJsonAsync<TmdbMovieResult>().Result.Results;
     }
     public static List<TmdbPersonResultData> SearchPerson(TmdbPersonSearch personSearch)
     {
