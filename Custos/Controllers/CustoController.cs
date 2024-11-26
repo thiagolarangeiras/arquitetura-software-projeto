@@ -26,14 +26,14 @@ public class CustoController : Controller
     [HttpGet("{id}")]
     public ActionResult<object> GetById([FromRoute()] int id)
     {
-        Custo custo = _dataContext.Custos.Where(x => x.Id == id).SingleOrDefault();
+        Custo custo = _dataContext.Custo.Where(x => x.Id == id).SingleOrDefault();
         return custo;
     }
 
     [HttpPatch("{id}")]
     public ActionResult<object> Patch([FromRoute] int id, [FromBody] CustoPost dto)
     {
-        Custo custo = _dataContext.Custos.Where(x => x.Id == id).SingleOrDefault();
+        Custo custo = _dataContext.Custo.Where(x => x.Id == id).SingleOrDefault();
         Custo.Update(custo, dto);
         _dataContext.SaveChanges();
         return custo;
@@ -42,8 +42,8 @@ public class CustoController : Controller
     [HttpDelete("{id}")]
     public ActionResult<object> Delete([FromRoute] int id)
     {
-        Custo custo = _dataContext.Custos.Where(x => x.Id == id).SingleOrDefault();
-        _dataContext.Custos.Remove(custo);
+        Custo custo = _dataContext.Custo.Where(x => x.Id == id).SingleOrDefault();
+        _dataContext.Custo.Remove(custo);
         _dataContext.SaveChanges();
         return custo;
     }

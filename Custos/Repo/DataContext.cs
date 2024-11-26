@@ -6,7 +6,7 @@ namespace Custos.Repo;
 public class DataContext : DbContext
 {
     public string DbPath { get; }
-    public DbSet<Custo> Custos { get; set; }
+    public DbSet<Custo> Custo { get; set; }
 
     public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 

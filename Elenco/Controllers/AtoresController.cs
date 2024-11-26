@@ -1,5 +1,5 @@
-﻿using Custos.Models;
-using Custos.Repo;
+﻿using Elenco.Models;
+using Elenco.Repo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Custos.Controllers;
@@ -15,36 +15,36 @@ public class AtoresController : Controller
     }
 
     [HttpPost]
-    public ActionResult<object> Post([FromBody] CustoPost dto)
+    public ActionResult<object> Post([FromBody] AtoresPost dto)
     {
-        Atores custo = Atores.DtoToCusto(dto);
-        _dataContext.Add(custo);
+        Atores ator = Atores.DtoToCusto(dto);
+        _dataContext.Add(ator);
         _dataContext.SaveChanges();
-        return custo;
+        return ator;
     }
 
     [HttpGet("{id}")]
     public ActionResult<object> GetById([FromRoute()] int id)
     {
-        Atores custo = _dataContext.Custos.Where(x => x.Id == id).SingleOrDefault();
-        return custo;
+        Atores ator = _dataContext.Atores.Where(x => x.Id == id).SingleOrDefault();
+        return ator;
     }
 
     [HttpPatch("{id}")]
-    public ActionResult<object> Patch([FromRoute] int id, [FromBody] CustoPost dto)
+    public ActionResult<object> Patch([FromRoute] int id, [FromBody] AtoresPost dto)
     {
-        Atores custo = _dataContext.Custos.Where(x => x.Id == id).SingleOrDefault();
-        Atores.Update(custo, dto);
+        Atores ator = _dataContext.Atores.Where(x => x.Id == id).SingleOrDefault();
+        Atores.Update(ator, dto);
         _dataContext.SaveChanges();
-        return custo;
+        return ator;
     }
 
     [HttpDelete("{id}")]
     public ActionResult<object> Delete([FromRoute] int id)
     {
-        Atores custo = _dataContext.Custos.Where(x => x.Id == id).SingleOrDefault();
-        _dataContext.Custos.Remove(custo);
+        Atores ator = _dataContext.Atores.Where(x => x.Id == id).SingleOrDefault();
+        _dataContext.Atores.Remove(ator);
         _dataContext.SaveChanges();
-        return custo;
+        return ator;
     }
 }
