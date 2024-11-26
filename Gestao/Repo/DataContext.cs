@@ -13,6 +13,7 @@ public class DataContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Filme>().HasKey(x => x.Id);
         modelBuilder.Entity<Teste>().HasKey(x => x.Id);
         base.OnModelCreating(modelBuilder);
     }

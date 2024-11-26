@@ -12,10 +12,10 @@ public class FilmeController : Controller
 {
     private DataContext _dataContext;
     private FilmeService _filmeService;
-    public FilmeController(DataContext dataContext, FilmeService filmeService)
+    public FilmeController(DataContext dataContext)//, FilmeService filmeService)
     {
         _dataContext = dataContext;
-        _filmeService = filmeService;
+        //_filmeService = filmeService;
     }
     
     [HttpPost]
@@ -43,7 +43,7 @@ public class FilmeController : Controller
         return filme;
     }
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public ActionResult<Object> Delete([FromRoute] int id)
     {
         Filme filme = _dataContext.Filme.Where(x => x.Id == id).SingleOrDefault();

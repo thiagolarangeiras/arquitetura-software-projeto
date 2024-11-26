@@ -2,17 +2,18 @@
 
 public class FilmePost
 {
-    public string Titulo;
-    public string Autor;
-    public DateOnly Data;
+    public string Titulo { get; set; }
+    public string Autor { get; set; }
+    public DateOnly Data { get; set; }
 }
 
 public class Filme
 {
-    public int Id;
-    public string Titulo;
-    public string Autor;
-    public DateOnly Data;
+    public int Id { get; set; }
+    public string Titulo { get; set; }
+    public string Autor { get; set; }
+    public DateOnly Data { get; set; }
+    public int Nota { get; set; }
 
     public static Filme DtoToFilme(FilmePost dto) 
     {

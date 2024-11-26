@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddDbContext<DataContext>(option =>
-    option.UseSqlite("Data Source=teste.db")
+    option.UseSqlite("Data Source=Gestao.db")
 );
 
 var app = builder.Build();
