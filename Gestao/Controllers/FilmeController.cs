@@ -1,4 +1,5 @@
-﻿using Gestao.Models;
+﻿using Gestao.Infra;
+using Gestao.Models;
 using Gestao.Repo;
 using Gestao.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +33,22 @@ public class FilmeController : Controller
     {
         Filme filme = _dataContext.Filme.Where(x => x.Id == id).SingleOrDefault();
         return filme;
+    }
+
+    [HttpGet]
+    public ActionResult<Object> Get([FromQuery(Name = "id")] int id, [FromQuery(Name = "elenco")] bool elenco)
+    {
+        if (elenco) 
+        {
+            Filme filme = _dataContext.Filme.Where(x => x.Id == id).SingleOrDefault();
+            FilmeGet dto = Filme.FilmeToDto(filme);
+            dto.Elenco = ElencoInfra.Get(dto.Id);
+            return dto;
+        }
+        {
+            Filme filme = _dataContext.Filme.Where(x => x.Id == id).SingleOrDefault();
+            return filme;
+        }
     }
 
     [HttpPatch("{id}")]
