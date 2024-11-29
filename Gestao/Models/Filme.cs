@@ -16,6 +16,7 @@ public class FilmeGet
     public string Autor { get; set; }
     public DateOnly Data { get; set; }
     public int Nota { get; set; }
+    public int Lucro { get; set; }
     public List<Atores> Elenco { get; set; }
 }
 

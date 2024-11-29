@@ -1,5 +1,6 @@
 ﻿using Custos.Models;
 using Custos.Repo;
+using Elenco.Infra;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Custos.Controllers;
@@ -18,6 +19,18 @@ public class CustoController : Controller
     public ActionResult<object> Post([FromBody] CustoPost dto)
     {
         Custo custo = Custo.DtoToCusto(dto);
+        try
+        {
+            Filme resultado = GestaoInfra.GetMovie(custo.FilmeId);
+            if (resultado.Id != custo.FilmeId)
+                return Ok();
+        }
+        catch (Exception e)
+        {
+            return Ok();
+        }
+        var lucro = custo.ValorTotalArecadado - custo.ValorProducao;
+        GestaoInfra.UpdateMovieLucro(custo.Id, lucro);
         _dataContext.Add(custo);
         _dataContext.SaveChanges();
         return custo;
