@@ -18,7 +18,7 @@ public class FilmeController : Controller
         _dataContext = dataContext;
         //_filmeService = filmeService;
     }
-    
+
     [HttpPost]
     public ActionResult<Object> Post([FromBody] FilmePost dto)
     {
@@ -29,7 +29,7 @@ public class FilmeController : Controller
     }
 
     [HttpGet("{id}")]
-    public ActionResult<Object> GetById([FromRoute() ] int id)
+    public ActionResult<Object> GetById([FromRoute()] int id)
     {
         Filme filme = _dataContext.Filme.Where(x => x.Id == id).SingleOrDefault();
         return filme;
@@ -38,7 +38,7 @@ public class FilmeController : Controller
     [HttpGet]
     public ActionResult<Object> Get([FromQuery(Name = "id")] int id, [FromQuery(Name = "elenco")] bool elenco)
     {
-        if (elenco) 
+        if (elenco)
         {
             Filme filme = _dataContext.Filme.Where(x => x.Id == id).SingleOrDefault();
             FilmeGet dto = Filme.FilmeToDto(filme);
@@ -52,10 +52,10 @@ public class FilmeController : Controller
     }
 
     [HttpPatch("{id}")]
-    public ActionResult<Object> Patch([FromRoute] int id, [FromBody] FilmePost dto)
+    public ActionResult<Object> Patch([FromRoute] int id, [FromBody] FilmePatch dto)
     {
         Filme filme = _dataContext.Filme.Where(x => x.Id == id).SingleOrDefault();
-        Filme.Update(filme, dto);
+        Filme.UpdateValores(filme, dto);
         _dataContext.SaveChanges();
         return filme;
     }

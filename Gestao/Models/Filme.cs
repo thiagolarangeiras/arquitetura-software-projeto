@@ -9,7 +9,16 @@ public class FilmePost
     public DateOnly Data { get; set; }
 }
 
-public class FilmeGet 
+public class FilmePatch
+{
+    public string Titulo { get; set; }
+    public string Autor { get; set; }
+    public DateOnly Data { get; set; }
+    public int Lucro { get; set; }
+    public float vl_total { get; set; }
+}
+
+public class FilmeGet
 {
     public int Id { get; set; }
     public string Titulo { get; set; }
@@ -17,6 +26,7 @@ public class FilmeGet
     public DateOnly Data { get; set; }
     public int Nota { get; set; }
     public int Lucro { get; set; }
+    public float vl_total { get; set; }
     public List<Atores> Elenco { get; set; }
 }
 
@@ -27,8 +37,10 @@ public class Filme
     public string Autor { get; set; }
     public DateOnly Data { get; set; }
     public int Nota { get; set; }
+    public int Lucro { get; set; }
+    public float vl_total { get; set; }
 
-    public static Filme DtoToFilme(FilmePost dto) 
+    public static Filme DtoToFilme(FilmePost dto)
     {
         return new Filme()
         {
@@ -46,7 +58,8 @@ public class Filme
             Titulo = filme.Titulo,
             Autor = filme.Autor,
             Data = filme.Data,
-            Nota = filme.Nota
+            Nota = filme.Nota,
+            vl_total = filme.vl_total
         };
     }
 
@@ -55,5 +68,10 @@ public class Filme
         filme.Titulo = dto.Titulo;
         filme.Autor = dto.Autor;
         filme.Data = dto.Data;
+    }
+    public static void UpdateValores(Filme filme, FilmePatch dto)
+    {
+        filme.Lucro = dto.Lucro;
+        filme.vl_total = dto.vl_total;
     }
 }
