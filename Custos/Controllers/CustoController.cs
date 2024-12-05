@@ -30,7 +30,7 @@ public class CustoController : Controller
             return Ok();
         }
         var lucro = custo.ValorTotalArecadado - custo.ValorProducao;
-        GestaoInfra.UpdateMovieLucro(custo.Id, lucro);
+        GestaoInfra.UpdateMoviePrecos(custo.Id, lucro, custo.ValorProducao);
         _dataContext.Add(custo);
         _dataContext.SaveChanges();
         return custo;
