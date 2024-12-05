@@ -55,6 +55,15 @@ public class FilmeController : Controller
     public ActionResult<Object> Patch([FromRoute] int id, [FromBody] FilmePatch dto)
     {
         Filme filme = _dataContext.Filme.Where(x => x.Id == id).SingleOrDefault();
+        Filme.Update(filme, dto);
+        _dataContext.SaveChanges();
+        return filme;
+    }
+
+    [HttpPatch("{id}/custo")]
+    public ActionResult<Object> PatchCusto([FromRoute] int id, [FromBody] FilmePatchCusto dto)
+    {
+        Filme filme = _dataContext.Filme.Where(x => x.Id == id).SingleOrDefault();
         Filme.UpdateValores(filme, dto);
         _dataContext.SaveChanges();
         return filme;

@@ -9,6 +9,12 @@ public class FilmePost
     public DateOnly Data { get; set; }
 }
 
+public class FilmePatchCusto
+{
+    public int Lucro { get; set; }
+    public float vl_total { get; set; }
+}
+
 public class FilmePatch
 {
     public string Titulo { get; set; }
@@ -63,13 +69,13 @@ public class Filme
         };
     }
 
-    public static void Update(Filme filme, FilmePost dto)
+    public static void Update(Filme filme, FilmePatch dto)
     {
         filme.Titulo = dto.Titulo;
         filme.Autor = dto.Autor;
         filme.Data = dto.Data;
     }
-    public static void UpdateValores(Filme filme, FilmePatch dto)
+    public static void UpdateValores(Filme filme, FilmePatchCusto dto)
     {
         filme.Lucro = dto.Lucro;
         filme.vl_total = dto.vl_total;

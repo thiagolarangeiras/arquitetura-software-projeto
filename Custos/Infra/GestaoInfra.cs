@@ -45,7 +45,7 @@ public static class GestaoInfra
 
     public static Filme UpdateMoviePrecos(int id, decimal lucro, decimal vl_total) 
     {
-        string uri = Url + "/filme/" + id.ToString();
+        string uri = Url + "/filme/" + id.ToString() + "/custo";
         return Request(uri, HttpMethod.Patch, JsonContent.Create(new {Lucro = lucro, vl_total = vl_total}));
     }
 
